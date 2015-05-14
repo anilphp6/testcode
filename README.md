@@ -10,4 +10,11 @@ $credentials = array(
 		
 by command line
 
-#php index.php username password contributor url		
+
+#for  get total project contribute by contributor
+
+$php index.php -username anilphp6 -pass ****  https://github.com/:username/repositryname  contributorname	
+
+#for get comments only 
+
+$php index.php -username anilphp6 -pass ****  https://github.com/:username/repositryname  contributorname -c

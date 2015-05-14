@@ -16,10 +16,11 @@ try {
 	if (isset($argv) && is_array($argv) &&  count($argv)>6) {
 		/* reposotry URL*/
 		$credentials = array(
-			'username' => $argv[2],
-			'password' => $argv[4],
-			'url' => $argv[5],
-			'contributorName' => $argv[6]
+			'username' 			=> $argv[2],
+			'password' 			=> $argv[4],
+			'url' 				=> $argv[5],
+			'contributorName' 	=> $argv[6],
+			'comments' 			=> $argv[7]
 		);
 		/*$credentials = array(
 			'username' 			=> 'anilphp6',

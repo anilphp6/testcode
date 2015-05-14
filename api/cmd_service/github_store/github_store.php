@@ -17,7 +17,8 @@ class github_store extends PostRequest implements Commands {
      * @var array
      */
     private $gitApis = array(
-        'contributors' => 'https://api.github.com/repos/:repository/contributors'
+        'contributors' => 'https://api.github.com/repos/:repository/contributors',
+		 'commit_activity' => 'https://api.github.com/repos/:repository/stats/commit_activity'
     );
     
     /**
@@ -46,6 +47,7 @@ class github_store extends PostRequest implements Commands {
      * @return mixed
      */
     public function getGitApis($key = '') {
+		
         if (!empty($key) && isset($this->gitApis[$key])) {
             return $this->gitApis[$key];
         }
@@ -84,12 +86,14 @@ class github_store extends PostRequest implements Commands {
     public function getCommitCount() {
 
         $apiUrl = $this->getGitApis('contributors');
-
-        $url = strtr($apiUrl,
+		if($this->getOptions()['comments'] != null){
+			 $apiUrl = $this->getGitApis('commit_activity'); 
+		}
+		$url = strtr($apiUrl,
                 array(
             ':repository' => substr($this->getOptions('path'), 1)
         ));
-
+		//echo $url;exit;
         $output = $this->executeCurl($url, $this->getOptions());
 
         $formattedResponse = $this->parseResponse($output,
@@ -102,8 +106,10 @@ class github_store extends PostRequest implements Commands {
 				#print_r($contributor);exit;
 				if(isset($contributor['contributions'])){
 					$contributors[$contributor['login']] = $contributor['contributions'];
-				}else{
+				}elseif(isset($contributor['author']['login'])){
 					$contributors[$contributor['author']['login']] = 'Total Project: '.$contributor['total'].' Totals comments: '.$contributor['weeks'][0]['d'];
+				}else{
+					$contributors[$this->getOptions()['username']] = 'Total commits:'.$contributor['total'];
 				}
             }
         }
