@@ -23,7 +23,7 @@ try {
 		);
 		/*$credentials = array(
 			'username' 			=> 'anilphp6',
-			'password'		 	=> 'bal@1989',
+			'password'		 	=> '****',
 			'contributor' 		=> 'anilphp6',
 			'url' 				=> 'https://github.com/anilphp6/testcode anilphp6' 
 		);*/
