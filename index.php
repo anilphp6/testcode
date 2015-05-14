@@ -36,7 +36,7 @@ try {
 		if (count($response) > 0) {
 			foreach ($response as $user_name => $total_count) {
 				echo "Contributor Name: " . $user_name;
-				echo $total_count . PHP_EOL;
+				echo ": "$total_count . PHP_EOL;
 			}
 		} else {
 			echo ErrorMessage::RECORD_NOT_FOUND;
