@@ -39,7 +39,7 @@ class PostRequest {
         $curlOptions = $this->prepareRequest($url, $options, $parameters,
                 $httpMethod
         );
-
+		//print_R($curlOptions);exit;
         curl_setopt_array($curl, $curlOptions);
 
         $response = curl_exec($curl);
@@ -51,7 +51,7 @@ class PostRequest {
         curl_close($curl);
 		//echo '<pre>'; print_R($headers);exit;
         if (!in_array($headers['http_code'], array(0, 200, 201))) {
-            throw new \Exception($errorMessage, (int) $headers['http_code']);
+           throw new \Exception($errorMessage, (int) $headers['http_code']);
         }
 
         if ($errorNumber != '') {

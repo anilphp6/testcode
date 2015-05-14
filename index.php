@@ -2,35 +2,33 @@
 /**
  * main files that will execute by command Commands
  */
+ error_reporting(E_ALL & ~E_NOTICE);
 #include api file/bootstrap
 require_once 'API_loader.php';
-
 #common class need to incude on all pages
 require_once 'common.php';
-
 #register request
 API_loader::auth();
-
 use api\cmd_service\ClassFactory;
 use api\cmd_service\ErrorMessage;
 try {
 	#get agument from command line should be 7 agrument
-	//if (isset($argv) && count($argv)>3) {
-	if (1) {
+	if (isset($argv) && is_array($argv) &&  count($argv)>6) {
 		/* reposotry URL*/
 		$credentials = array(
-			'username' 			=> $argv[1],
-			'password'		 	=> $argv[2],
-			'contributor' 		=> $argv[3],
-			'url' 				=> $argv[4] 
+			'username' => $argv[2],
+			'password' => $argv[4],
+			'url' => $argv[5],
+			'contributorName' => $argv[6]
 		);
 		/*$credentials = array(
-			'username' 			=> '*****',
-			'password'		 	=> '****',
-			'contributor' 			=> '******',
-			'url' 				=> 'https://github.com/anilphp6/test' 
+			'username' 			=> 'anilphp6',
+			'password'		 	=> 'bal@1989',
+			'contributor' 		=> 'anilphp6',
+			'url' 				=> 'https://github.com/anilphp6/testcode anilphp6' 
 		);*/
 		//echo $argv[4];exit;
+		//print_r($credentials);exit;
 		#create object according to input for github/bitbucket
 		$cmd_factory 	= new ClassFactory();
 		$cmd_factory->StoreInstance($credentials);
