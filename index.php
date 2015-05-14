@@ -25,9 +25,9 @@ try {
 			'url' 				=> $argv[4] 
 		);
 		/*$credentials = array(
-			'username' 			=> 'anilphp6',
-			'password'		 	=> 'bal@1989',
-			'contributor' 		=> 'anilphp6',
+			'username' 			=> '*****',
+			'password'		 	=> '****',
+			'contributor' 			=> '******',
 			'url' 				=> 'https://github.com/anilphp6/test' 
 		);*/
 		//echo $argv[4];exit;
