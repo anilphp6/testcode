@@ -28,16 +28,15 @@ try {
 			'url' 				=> 'https://github.com/anilphp6/testcode anilphp6' 
 		);*/
 		//echo $argv[4];exit;
-		//print_r($credentials);exit;
 		#create object according to input for github/bitbucket
 		$cmd_factory 	= new ClassFactory();
 		$cmd_factory->StoreInstance($credentials);
 		$response 		= $cmd_factory->service_instance()->getCommitCount();
-		
+		#print_r($response);exit;
 		if (count($response) > 0) {
 			foreach ($response as $user_name => $total_count) {
 				echo "Contributor Name: " . $user_name;
-				echo " :: Total Commits: " . $total_count . PHP_EOL;
+				echo $total_count . PHP_EOL;
 			}
 		} else {
 			echo ErrorMessage::RECORD_NOT_FOUND;

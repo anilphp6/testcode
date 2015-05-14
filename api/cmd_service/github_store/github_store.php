@@ -99,12 +99,18 @@ class github_store extends PostRequest implements Commands {
 
         if (count($formattedResponse) > 0) {
             foreach ($formattedResponse as $contributor) {
-                $contributors[$contributor['login']] = $contributor['contributions'];
+				#print_r($contributor);exit;
+				if(isset($contributor['contributions'])){
+					$contributors[$contributor['login']] = $contributor['contributions'];
+				}else{
+					$contributors[$contributor['author']['login']] = 'Total Project: '.$contributor['total'].' Totals comments: '.$contributor['weeks'][0]['d'];
+				}
             }
         }
         
         $contributorName = $this->getOptions('contributorName');
         if (!empty($contributorName)) {
+			#print_R($contributors);exit;
             return array($contributorName => $contributors[$contributorName]);
         }
 

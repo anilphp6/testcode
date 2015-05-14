@@ -49,7 +49,7 @@ class PostRequest {
 		$errorMessage = curl_error($curl);
 
         curl_close($curl);
-		//echo '<pre>'; print_R($headers);exit;
+		#echo '<pre>'; print_R($headers);exit;
         if (!in_array($headers['http_code'], array(0, 200, 201))) {
            throw new \Exception($errorMessage, (int) $headers['http_code']);
         }
