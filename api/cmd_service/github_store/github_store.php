@@ -18,7 +18,7 @@ class github_store extends PostRequest implements Commands {
      */
     private $gitApis = array(
         'contributors' => 'https://api.github.com/repos/:repository/contributors',
-		 'commit_activity' => 'https://api.github.com/repos/:repository/stats/commit_activity'
+	'commit_activity' => 'https://api.github.com/repos/:repository/stats/commit_activity'
     );
     
     /**
