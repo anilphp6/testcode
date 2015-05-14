@@ -16,16 +16,16 @@ try {
 	if (isset($argv) && is_array($argv) &&  count($argv)>6) {
 		/* reposotry URL*/
 		$credentials = array(
-			'username' 			=> $argv[2],
-			'password' 			=> $argv[4],
-			'url' 				=> $argv[5],
+			'username' 		=> $argv[2],
+			'password' 		=> $argv[4],
+			'url' 			=> $argv[5],
 			'contributorName' 	=> $argv[6],
-			'comments' 			=> $argv[7]
+			'comments' 		=> $argv[7]
 		);
 		/*$credentials = array(
 			'username' 			=> 'anilphp6',
 			'password'		 	=> '****',
-			'contributor' 		=> 'anilphp6',
+			'contributor' 			=> 'anilphp6',
 			'url' 				=> 'https://github.com/anilphp6/testcode anilphp6' 
 		);*/
 		//echo $argv[4];exit;
