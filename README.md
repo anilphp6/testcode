@@ -1,5 +1,9 @@
 #this index.php file will run by command line or if you want to run directly by browser then use below mentioned code
 
+#requiement
+
+Php 5.5 version
+
 index.php line number : 27
 $credentials = array(
 			'username' 			=> '',
