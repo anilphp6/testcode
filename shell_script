@@ -1,0 +1,78 @@
+#!/bin/sh
+#################### upgrade php version 5.5 ####################################
+displayed_message(){
+    echo '\n*** Installation process completed...';
+}
+#move files in www folder
+file_move(){
+    read -p "enter directroy path that you want to move in www directory ? " response;
+    if [ ! -d $response ]; then
+        echo "$response Directory not exist";
+    else
+        echo "\n Direcotry moveing........\n";
+        mv $response /var/www/; 
+        status =     $?;    
+        if test $status -eq 0
+            then
+                echo "completed..\n";
+                    displayed_message;
+            else
+                 echo 'MV command fails permission denied';
+         fi
+    fi
+}
+
+#install latest php version
+install_php_latest_version(){
+  echo '\n\n Installing latest php version 5.5................\n\n';
+    
+    $(php -version >/dev/null 2>&1);
+    status=$?
+    if test $status -eq 0
+    then
+        file_move
+    else
+        echo '\nError permission denied , try by sudo command....';
+    fi        
+    
+    
+}
+
+#uninstall php version
+uninstall_php(){
+    echo '\n**** uninstalling current php version****\n';
+    $(sudo apt-get remove --purge apache2 php5 2>&1)
+    status=$?;
+    if test $status -eq 0
+    then
+    install_php_latest_version;
+    else
+        echo 'un-installation error sudo dennied';
+    fi
+}
+
+#check php version
+check_php_version(){
+    # b=$(ls -l)
+    $(php -version >/dev/null 2>&1);
+
+    status=$?
+    if test $status -eq 0
+    then
+        uninstall_php
+    else
+        echo '\n**You donot have any php version**\n';
+        install_php_latest_version;
+    fi
+}
+
+echo "****************** update php version 5.5*********************\n\n";
+
+read -p "Are you sure want to update php version ? [y/N] " response;
+
+#read -p "Continue (y/n)?" CONT
+if [ "$response" = "y" ]; then
+    check_php_version;
+else
+  echo "Bye .............";
+fi
